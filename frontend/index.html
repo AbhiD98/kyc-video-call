@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KYC Video Call</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app">
+
+        <!-- Header -->
+        <header class="header">
+            <div class="brand">
+                <div class="brand-icon">🔐</div>
+                <span class="brand-name">KYC Verify</span>
+            </div>
+            <div class="header-right">
+                <span class="role-badge" id="role"></span>
+                <div class="status-dot" id="statusDot"></div>
+                <span class="status-text" id="statusText">Connecting...</span>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main">
+
+            <!-- Video Grid -->
+            <div class="video-grid">
+                <div class="video-card remote-card">
+                    <video id="remoteVideo" autoplay playsinline></video>
+                    <div class="video-label">
+                        <span class="label-dot remote-dot"></span>
+                        <span id="remoteLabel">Remote</span>
+                    </div>
+                    <div class="video-placeholder" id="remotePlaceholder">
+                        <div class="avatar">👤</div>
+                        <p>Waiting for connection...</p>
+                    </div>
+                </div>
+
+                <div class="video-card local-card">
+                    <video id="localVideo" autoplay playsinline muted></video>
+                    <div class="video-label">
+                        <span class="label-dot local-dot"></span>
+                        <span>You</span>
+                    </div>
+                    <div class="video-placeholder" id="localPlaceholder">
+                        <div class="avatar">📷</div>
+                        <p>Camera off</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Call Controls -->
+            <div class="controls">
+                <button class="btn btn-primary" id="startCall">
+                    <span class="btn-icon">📞</span>
+                    Start KYC Call
+                </button>
+                <button class="btn btn-danger" id="endCall" style="display:none;">
+                    <span class="btn-icon">📵</span>
+                    End Call
+                </button>
+
+                <div id="customerLinkBox" style="display:none;">
+                    <p>Customer KYC Link:</p>
+                    <input id="customerLink" type="text" readonly>
+                    <button id="copyLink">Copy Link</button>
+                </div>
+            </div>
+
+            <!-- Incoming Call Banner -->
+            <div class="incoming-call" id="incomingCall" style="display:none;">
+                <div class="incoming-icon">📲</div>
+                <div class="incoming-info">
+                    <h3>Incoming KYC Call</h3>
+                    <p>An agent wants to verify your identity</p>
+                </div>
+                <div class="incoming-actions">
+                    <button class="btn btn-accept" id="acceptCall">
+                        <span>✅</span> Accept
+                    </button>
+                    <button class="btn btn-reject" id="rejectCall">
+                        <span>❌</span> Reject
+                    </button>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,292 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    background: #0f1117;
+    color: #e2e8f0;
+    min-height: 100vh;
+}
+
+.app {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* ── Header ── */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 28px;
+    background: #1a1d27;
+    border-bottom: 1px solid #2d3148;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.brand-icon { font-size: 22px; }
+
+.brand-name {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: #fff;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.role-badge {
+    background: #2d3148;
+    border: 1px solid #4a5080;
+    color: #a5b4fc;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 20px;
+    text-transform: capitalize;
+}
+
+.status-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #f59e0b;
+    animation: pulse 1.5s infinite;
+}
+
+.status-dot.connected { background: #22c55e; animation: none; }
+.status-dot.ended     { background: #ef4444; animation: none; }
+
+.status-text { font-size: 13px; color: #94a3b8; }
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.4; }
+}
+
+/* ── Main ── */
+.main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 20px;
+    gap: 28px;
+}
+
+/* ── Video Grid ── */
+.video-grid {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 16px;
+    width: 100%;
+    max-width: 1000px;
+}
+
+@media (max-width: 700px) {
+    .video-grid { grid-template-columns: 1fr; }
+}
+
+.video-card {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    background: #1a1d27;
+    border: 1px solid #2d3148;
+    aspect-ratio: 16/9;
+}
+
+.video-card video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.video-label {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(0,0,0,0.55);
+    backdrop-filter: blur(6px);
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #fff;
+    z-index: 2;
+}
+
+.label-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+}
+
+.remote-dot { background: #22c55e; }
+.local-dot  { background: #60a5fa; }
+
+.video-placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: #1a1d27;
+    z-index: 1;
+}
+
+.video-placeholder .avatar { font-size: 48px; }
+.video-placeholder p { font-size: 13px; color: #64748b; }
+
+/* Hide placeholder when video is active */
+video:not([srcObject=""]) + .video-label,
+video[srcObject] ~ .video-placeholder { display: none; }
+
+/* ── Controls ── */
+.controls {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 28px;
+    border: none;
+    border-radius: 50px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.15s, opacity 0.15s, box-shadow 0.15s;
+}
+
+.btn:hover  { transform: translateY(-2px); opacity: 0.92; }
+.btn:active { transform: translateY(0); }
+
+.btn-icon { font-size: 17px; }
+
+.btn-primary {
+    background: linear-gradient(135deg, #6366f1, #4f46e5);
+    color: #fff;
+    box-shadow: 0 4px 20px rgba(99,102,241,0.4);
+}
+
+.btn-danger {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    color: #fff;
+    box-shadow: 0 4px 20px rgba(239,68,68,0.4);
+}
+
+.btn-accept {
+    background: linear-gradient(135deg, #22c55e, #16a34a);
+    color: #fff;
+    box-shadow: 0 4px 16px rgba(34,197,94,0.35);
+    padding: 10px 22px;
+    font-size: 14px;
+}
+
+.btn-reject {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    color: #fff;
+    box-shadow: 0 4px 16px rgba(239,68,68,0.35);
+    padding: 10px 22px;
+    font-size: 14px;
+}
+
+/* ── Customer Link Box ── */
+#customerLinkBox {
+    background: #1a1d27;
+    border: 1px solid #2d3148;
+    border-radius: 12px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 640px;
+}
+
+#customerLinkBox p {
+    font-size: 13px;
+    color: #94a3b8;
+    white-space: nowrap;
+}
+
+#customerLink {
+    flex: 1;
+    min-width: 200px;
+    background: #0f1117;
+    border: 1px solid #2d3148;
+    border-radius: 8px;
+    color: #a5b4fc;
+    font-size: 13px;
+    padding: 8px 12px;
+    outline: none;
+}
+
+#copyLink {
+    background: linear-gradient(135deg, #6366f1, #4f46e5);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.15s;
+}
+
+#copyLink:hover { opacity: 0.85; }
+
+.incoming-call {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    background: #1a1d27;
+    border: 1px solid #4a5080;
+    border-radius: 16px;
+    padding: 20px 28px;
+    width: 100%;
+    max-width: 640px;
+    box-shadow: 0 0 0 3px rgba(99,102,241,0.2);
+    animation: slideUp 0.3s ease;
+    flex-wrap: wrap;
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.incoming-icon { font-size: 36px; animation: ring 0.6s infinite alternate; }
+
+@keyframes ring {
+    from { transform: rotate(-15deg); }
+    to   { transform: rotate(15deg); }
+}
+
+.incoming-info { flex: 1; }
+.incoming-info h3 { font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+.incoming-info p  { font-size: 13px; color: #94a3b8; }
+
+.incoming-actions { display: flex; gap: 10px; }

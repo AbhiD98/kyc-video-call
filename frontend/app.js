@@ -1,6 +1,6 @@
 // const socket = new WebSocket("ws://localhost:8765");
 const socket = new WebSocket(
-    "wss://visible-admit-clocks-worldcat.trycloudflare.com"
+    "wss://kyc-video-call-server.onrender.com"
 );
 const params = new URLSearchParams(window.location.search);
 
